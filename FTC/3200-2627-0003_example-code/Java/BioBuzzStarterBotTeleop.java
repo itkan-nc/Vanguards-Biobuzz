@@ -257,6 +257,18 @@ public class BioBuzzStarterbotTeleop extends OpMode {
             launcher.setVelocity(0);
         }
 
+
+
+
+
+
+        // this is gonna be the intake use L2 to activate the intake
+        if (gamepad1.left_bumper) {
+            intake.setPower(0.75);
+        } else {
+            intake.setPower (0);
+        }
+
         /*
          * Here we ask if the driver is currently pressing the right bumper, AND the launcher is
          * spinning fast enough to make a successful shot. If it is, then we will turn on the
