@@ -147,6 +147,7 @@ public class BioBuzzStarterbotTeleop extends OpMode {
          * servos work to pull elements into the intake.
          */
         rightIntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftIntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
         windmillServo.setDirection(DcMotorSimple.Direction.REVERSE);
 
         /*
@@ -251,23 +252,20 @@ public class BioBuzzStarterbotTeleop extends OpMode {
          * holding down the right gamepad. If they are, then we want to start spinning up the launcher.
          * Otherwise, we start spinning the launcher down.
          */
-        if (gamepad1.right_bumper) {
+        if (gamepad1.left_bumper) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
         } else {
             launcher.setVelocity(0);
         }
 
+        // press r1 to intake
 
-
-
-
-
-        // this is gonna be the intake use L1 to activate the intake
-        if (gamepad1.left_bumper) {
+        if (gamepad1.right_bumper) {
             intake.setPower(0.75);
-        } else {
-            intake.setPower (0);
+        }else {
+            intake.setPower(0);
         }
+
 
         /*
          * Here we ask if the driver is currently pressing the right bumper, AND the launcher is
@@ -276,9 +274,8 @@ public class BioBuzzStarterbotTeleop extends OpMode {
          * add some power to the intake power. This can sometimes help dislodge stuck elements from
          * inside the hopper.
          */
-        if (gamepad1.right_bumper && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
+        if (gamepad1.left_bumper && launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
             windmillServo.setPower(1);
-            intakePower += 0.5;
         } else {
             windmillServo.setPower(0);
         }
