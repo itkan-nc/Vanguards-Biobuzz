@@ -262,7 +262,7 @@ public class BioBuzzStarterbotTeleop extends OpMode {
 
 
 
-        // this is gonna be the intake use L2 to activate the intake
+        // this is gonna be the intake use L1 to activate the intake
         if (gamepad1.left_bumper) {
             intake.setPower(0.75);
         } else {
