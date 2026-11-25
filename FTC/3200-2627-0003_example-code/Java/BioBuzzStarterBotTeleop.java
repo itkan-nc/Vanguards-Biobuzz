@@ -179,7 +179,7 @@ public void loop() {
     arcadeDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
 
     // Right bumper controls the intake.
-    intakePower = gamepad1.right_bumper ? 0.75 : 0;
+    intakePower = gamepad1.right_bumper ? 0.75 : 0.75;
 
     launch();
 
@@ -210,7 +210,7 @@ public void loop() {
     }
 
    void launch() {
-    if (gamepad1.left_bumper) {
+    if (gamepad1.right_trigger) {
         launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
 
         if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
