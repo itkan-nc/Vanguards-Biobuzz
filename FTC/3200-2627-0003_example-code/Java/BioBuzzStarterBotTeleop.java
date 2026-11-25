@@ -209,6 +209,18 @@ public void loop() {
         rightDrive.setPower(rightPower);
     }
 
+    if (gamepad1.left_bumber) {
+        leftIntakeServo.setPower(0);
+    
+        { else {
+            leftIntakeServo.setPower(0);
+        }
+         if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
+        leftIntakeServo.setPower(0);
+        } else {
+        leftIntakeServo.setPower(0);
+        }           
+    
    void launch() {
     if (gamepad1.left_bumper) {
         launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
