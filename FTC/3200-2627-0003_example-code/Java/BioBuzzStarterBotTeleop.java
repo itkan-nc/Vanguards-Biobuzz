@@ -237,7 +237,7 @@ public class BioBuzzStarterBotTeleop extends OpMode {
             windmillServo.setPower(0);
         }*/
 
-        if (gamepad1.left_trigger) {
+        if (gamepad1.left_trigger > .5) {
             right_intake_servo.setPower(1);
             left_intake_servo.setPower(1);
             intake.setPower(1);
@@ -257,7 +257,7 @@ public class BioBuzzStarterBotTeleop extends OpMode {
 
         //reverse conrolls
         
-        if (gamepad1.right_trigger) {
+        if (gamepad1.right_trigger > .5) {
             right_intake_servo.setPower(-1);
             left_intake_servo.setPower(-1);
             intake.setPower(-1);
