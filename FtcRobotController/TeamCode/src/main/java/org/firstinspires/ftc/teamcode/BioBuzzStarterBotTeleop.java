@@ -1,3 +1,4 @@
+
 /*   MIT License
  *   Copyright (c) [2026] [Base 10 Assets, LLC]
  *
@@ -178,7 +179,7 @@ public class BioBuzzStarterBotTeleop extends OpMode {
     public void loop() {
         arcadeDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
 
-        // Intake: R2 pulls in, L2 pushes out.
+/*        // Intake: R2 pulls in, L2 pushes out.
         if (gamepad1.right_trigger > 0.5) {
             intakePower = 0.9;
         } else if (gamepad1.left_trigger > 0.5) {
@@ -202,7 +203,7 @@ public class BioBuzzStarterBotTeleop extends OpMode {
     /*
      * Code to run ONCE after the driver hits STOP
      */
-    @Override
+/*    @Override
     public void stop() {
     }
 
@@ -213,14 +214,14 @@ public class BioBuzzStarterBotTeleop extends OpMode {
         /*
          * Send calculated power to motors
          */
-        leftDrive.setPower(leftPower);
-        rightDrive.setPower(rightPower);
-    }
+//        leftDrive.setPower(leftPower);
+     //   rightDrive.setPower(rightPower);
+  //  }
 
-    void launch() {
-        if (gamepad1.right_bumper) {
-            // R1: spin up the launcher
-            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
+    //void launch() {
+  //      if (gamepad1.right_bumper) {
+      //      // R1: spin up the launcher
+        /*    launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
 
             // Only feed the windmill once the wheel is up to speed
             if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
@@ -235,6 +236,48 @@ public class BioBuzzStarterBotTeleop extends OpMode {
         } else {
             launcher.setVelocity(0);
             windmillServo.setPower(0);
+        }*/
+
+        if (gamepad1.left_trigger > .5) {
+            right_intake_servo.setPower(1);
+            left_intake_servo.setPower(1);
+            intake.setPower(1);
+        } else {
+            right_intake_servo.setPower(0);
+            leftIntakeServo.setPower(0);
+            intake.setPower(0);
         }
+
+        if (gamepad1.left_bumper) {
+            windmill.setPower(1);
+            launcher.setPower(1);
+        } else {
+            windmill.setPower(0);
+            launcher.setPower(0);
+        }
+
+        //reverse conrolls
+        
+        if (gamepad1.right_trigger > .5) {
+            right_intake_servo.setPower(-1);
+            left_intake_servo.setPower(-1);
+            intake.setPower(-1);
+        } else {
+            right_intake_servo.setPower(0);
+            leftIntakeServo.setPower(0);
+            intake.setPower(0);
+        }
+
+        if (gamepad1.right_bumper) {
+            windmill.setPower(-1);
+            launcher.setPower(-1);
+        } else {
+            windmill.setPower(0);
+            launcher.setPower(0);
+        }
+
+
+
+        
     }
 }
