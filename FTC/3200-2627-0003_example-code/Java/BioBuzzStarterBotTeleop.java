@@ -51,7 +51,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @TeleOp(name = "BioBuzz StarterBot Teleop", group = "StarterBot")
 //@Disabled
-public class BioBuzzStarterbotTeleop extends OpMode {
+public class BioBuzzStarterBotTeleop extends OpMode {
 
     // Declare OpMode members.
     private DcMotor leftDrive = null;
@@ -72,8 +72,8 @@ public class BioBuzzStarterbotTeleop extends OpMode {
      * in the launch() function to only run the windmill servo when the motor is spinning fast
      * enough to make a successful throw.
      */
-    public final int LAUNCHER_TARGET_VELOCITY = 1250;
-    public final int LAUNCHER_MIN_VELOCITY = 1200;
+    public final int LAUNCHER_TARGET_VELOCITY = 1500;
+    public final int LAUNCHER_MIN_VELOCITY = 1400;
 
     /*
      * These two variables store the power we need to apply to the motors. In other cases, we may
@@ -123,6 +123,7 @@ public class BioBuzzStarterbotTeleop extends OpMode {
         leftDrive.setZeroPowerBehavior(BRAKE);
         rightDrive.setZeroPowerBehavior(BRAKE);
         intake.setZeroPowerBehavior(BRAKE);
+        launcher.setZeroPowerBehavior(BRAKE);
 
         /*
          * Here we set our launcher to the RUN_USING_ENCODER runmode.
@@ -174,23 +175,30 @@ public class BioBuzzStarterbotTeleop extends OpMode {
      * Code to run REPEATEDLY after the driver hits START but before they hit STOP
      */
     @Override
-@Override
-public void loop() {
-    arcadeDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
+    public void loop() {
+        arcadeDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
 
-    // Right bumper controls the intake.
-    intakePower = gamepad1.right_bumper ? 0.75 : 0;
+        // Intake: R2 pulls in, L2 pushes out.
+        if (gamepad1.right_trigger > 0.5) {
+            intakePower = 0.9;
+        } else if (gamepad1.left_trigger > 0.5) {
+            intakePower = -0.9;
+        } else {
+            intakePower = 0;
+        }
 
-    launch();
+        intake.setPower(intakePower);
+        leftIntakeServo.setPower(intakePower);
+        rightIntakeServo.setPower(intakePower);
 
-    intake.setPower(intakePower);
-    leftIntakeServo.setPower(intakePower);
-    rightIntakeServo.setPower(intakePower);
+        launch();
 
-    telemetry.addData("Motors", "left (%.2f), right (%.2f)",
-            leftPower, rightPower);
-    telemetry.addLine();
-}
+        telemetry.addData("Motors", "left (%.2f), right (%.2f)",
+                leftPower, rightPower);
+        telemetry.addData("Launcher velocity", launcher.getVelocity());
+        telemetry.addLine();
+    }
+
     /*
      * Code to run ONCE after the driver hits STOP
      */
@@ -209,32 +217,24 @@ public void loop() {
         rightDrive.setPower(rightPower);
     }
 
-    if (gamepad1.left_bumber) {
-        leftIntakeServo.setPower(0);
-    
-        { else {
-            leftIntakeServo.setPower(0);
-        }
-         if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
-        leftIntakeServo.setPower(0);
-        } else {
-        leftIntakeServo.setPower(0);
-        }           
-    
-   void launch() {
-    if (gamepad1.left_bumper) {
-        launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
+    void launch() {
+        if (gamepad1.right_bumper) {
+            // R1: spin up the launcher
+            launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
 
-        if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
-            windmillServo.setPower(1);
+            // Only feed the windmill once the wheel is up to speed
+            if (launcher.getVelocity() > LAUNCHER_MIN_VELOCITY) {
+                windmillServo.setPower(1);
+            } else {
+                windmillServo.setPower(0);
+            }
+        } else if (gamepad1.left_bumper) {
+            // L1: launcher brake (stop windmill, hold launcher at zero velocity)
+            launcher.setVelocity(0);
+            windmillServo.setPower(0);
         } else {
+            launcher.setVelocity(0);
             windmillServo.setPower(0);
         }
-    } else {
-        launcher.setVelocity(0);
-        windmillServo.setPower(0);
     }
-}
-
-
 }
