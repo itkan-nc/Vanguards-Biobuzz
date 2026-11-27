@@ -1,0 +1,10 @@
+com.qualcomm.ftcrobotcontroller.FtcRobotController-pngs-0 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/generated/res/pngs/debug
+com.qualcomm.ftcrobotcontroller.FtcRobotController-resValues-1 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/generated/res/resValues/debug
+com.qualcomm.ftcrobotcontroller.FtcRobotController-updated_navigation_xml-2 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/generated/updated_navigation_xml/debug
+com.qualcomm.ftcrobotcontroller.FtcRobotController-mergeDebugResources-3 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.qualcomm.ftcrobotcontroller.FtcRobotController-mergeDebugResources-4 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.qualcomm.ftcrobotcontroller.FtcRobotController-debug-5 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/intermediates/merged_res/debug/mergeDebugResources
+com.qualcomm.ftcrobotcontroller.FtcRobotController-debug-6 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/build/intermediates/packaged_res/debug/packageDebugResources
+com.qualcomm.ftcrobotcontroller.FtcRobotController-debug-7 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/src/debug/res
+com.qualcomm.ftcrobotcontroller.FtcRobotController-main-8 /home/googer/Documents/GitHub/Vanguards-Biobuzz/FtcRobotController/FtcRobotController/src/main/res
+gradleHome-0 /home/googer/.gradle

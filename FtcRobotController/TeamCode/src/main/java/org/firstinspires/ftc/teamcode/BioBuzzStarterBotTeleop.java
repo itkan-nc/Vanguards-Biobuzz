@@ -199,25 +199,9 @@ public class BioBuzzStarterBotTeleop extends OpMode {
         telemetry.addData("Launcher velocity", launcher.getVelocity());
         telemetry.addLine();
     }
+    */
 
     /*
-     * Code to run ONCE after the driver hits STOP
-     */
-/*    @Override
-    public void stop() {
-    }
-
-    void arcadeDrive(double forward, double rotate) {
-        leftPower = forward + rotate;
-        rightPower = forward - rotate;
-
-        /*
-         * Send calculated power to motors
-         */
-//        leftDrive.setPower(leftPower);
-     //   rightDrive.setPower(rightPower);
-  //  }
-
     //void launch() {
   //      if (gamepad1.right_bumper) {
       //      // R1: spin up the launcher
@@ -239,45 +223,52 @@ public class BioBuzzStarterBotTeleop extends OpMode {
         }*/
 
         if (gamepad1.left_trigger > .5) {
-            right_intake_servo.setPower(1);
-            left_intake_servo.setPower(1);
+            rightIntakeServo.setPower(1);
+            leftIntakeServo.setPower(1);
             intake.setPower(1);
         } else {
-            right_intake_servo.setPower(0);
+            rightIntakeServo.setPower(0);
             leftIntakeServo.setPower(0);
             intake.setPower(0);
         }
 
         if (gamepad1.left_bumper) {
-            windmill.setPower(1);
+            windmillServo.setPower(1);
             launcher.setPower(1);
         } else {
-            windmill.setPower(0);
+            windmillServo.setPower(0);
             launcher.setPower(0);
         }
 
         //reverse conrolls
         
         if (gamepad1.right_trigger > .5) {
-            right_intake_servo.setPower(-1);
-            left_intake_servo.setPower(-1);
+            rightIntakeServo.setPower(-1);
+            leftIntakeServo.setPower(-1);
             intake.setPower(-1);
         } else {
-            right_intake_servo.setPower(0);
+            rightIntakeServo.setPower(0);
             leftIntakeServo.setPower(0);
             intake.setPower(0);
         }
 
         if (gamepad1.right_bumper) {
-            windmill.setPower(-1);
+            windmillServo.setPower(-1);
             launcher.setPower(-1);
         } else {
-            windmill.setPower(0);
+            windmillServo.setPower(0);
             launcher.setPower(0);
         }
+    }
 
+    void arcadeDrive(double forward, double rotate) {
+        leftPower = forward + rotate;
+        rightPower = forward - rotate;
 
-
-        
+        /*
+         * Send calculated power to motors
+         */
+//        leftDrive.setPower(leftPower);
+//        rightDrive.setPower(rightPower);
     }
 }
